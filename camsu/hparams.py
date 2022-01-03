@@ -87,7 +87,7 @@ tts_schedule = [(12, 1e-3,   5_000,  32),   # progressive training schedule
                 (2,  1e-4, 180_000,  16),
                 (2,  1e-4, 350_000,  8)]
 
-tts_max_mel_len = 1250              # if you have a couple of extremely long spectrograms you might want to use this
+tts_max_mel_len = 600              # if you have a couple of extremely long spectrograms you might want to use this
 tts_bin_lengths = True              # bins the spectrogram lengths before sampling in data loader - speeds up training
 tts_clip_grad_norm = 1.0            # clips the gradient norm to prevent explosion - set to None if not needed
 tts_checkpoint_every = 2_000        # checkpoints the model every X steps
