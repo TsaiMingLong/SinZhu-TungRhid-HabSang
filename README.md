@@ -86,7 +86,7 @@
     │   └── 《臺灣客家語常用詞辭典》內容資料(1100430).csv
     └── 轉做調型資料.py
 ```
-3. `time dobi preprocess-tacotron`，準備tactorn格式，產生音檔長短`dataset.pkl`，音檔羅馬字對應`text_dict.pkl`、音檔頻譜`mel/`、音檔波形sample`quant/`。
+3. `NGINGIEN=SinZhug time dobi preprocess-tacotron`，準備tactorn格式，產生音檔長短`dataset.pkl`，音檔羅馬字對應`text_dict.pkl`、音檔頻譜`mel/`、音檔波形sample`quant/`。
 ```
 3-ciidien-20190516-16k-MeuLid-data/
 ├── dataset.pkl
@@ -103,7 +103,7 @@
 │   └── 15450.mp3.npy
 └── text_dict.pkl
 ```
-4. `time dobi tacotron`，訓練Tacotron模型。盡尾會產生`gta/`檔案。`gta/`係[Ground Truth Aligned synthesis](https://github.com/Rayhane-mamah/Tacotron-2#synthesis)用个，[Ground Truth相關資料](https://www.aptiv.com/en/insights/article/what-is-ground-truth)。程式愛走12點鐘。
+4. `NGINGIEN=SinZhug time dobi tacotron`，訓練Tacotron模型。盡尾會產生`gta/`檔案。`gta/`係[Ground Truth Aligned synthesis](https://github.com/Rayhane-mamah/Tacotron-2#synthesis)用个，[Ground Truth相關資料](https://www.aptiv.com/en/insights/article/what-is-ground-truth)。程式愛走12點鐘。
 ```
 4-ciidien-20190516-16k-MeuLid-checkpoints/
 ├── hagfa_lsa_smooth_attention.tacotron
@@ -132,7 +132,7 @@
   - 失敗个（`4-ciidien-20190516-16k-MeuLid-checkpoints/hagfa_lsa_smooth_attention.tacotron/attention/9658.png`）
   ![失敗个attention](tu/siidpai-9658.png)
 
-4-1. 假使在tactorn訓練時節，愛產生`gta/`檔案，走`time dobi tacotron-gta`
+4-1. 假使在tactorn訓練時節，愛產生`gta/`檔案，走`NGINGIEN=SinZhug time dobi tacotron-gta`
 
 4-2. `time dobi habsang-griffinlim`，試合成語句。`griffinlim`个音檔有電子聲，故所愛訓練`WaveRNN`分聲像人講話。
 ```
@@ -141,7 +141,7 @@
 │   └── __input_Kiung ha l_griffinlim_350k.wav
 └ ...
 ```
-5. `time dobi preprocess-wavernn`，因為太長个音檔無法度用訓練tacotron，會無法度coverage。`hparams.py`有設定`tts_max_mel_len`，故所`gta/`無全部音檔有。這指令照`gta/`檔案，產生wavernn愛个`dataset_wavernn.pkl`。
+5. `NGINGIEN=SinZhug time dobi preprocess-wavernn`，因為太長个音檔無法度用訓練tacotron，會無法度coverage。`hparams.py`有設定`tts_max_mel_len`，故所`gta/`無全部音檔有。這指令照`gta/`檔案，產生wavernn愛个`dataset_wavernn.pkl`。
 ```
 3-ciidien-20190516-16k-MeuLid-data/
 ├── dataset.pkl
@@ -162,7 +162,7 @@ Original Traceback (most recent call last):
   File "mtrand.pyx", line 992, in mtrand.RandomState.randint
 ValueError: Range cannot be empty (low >= high) unless no samples are taken
 ```
-6. `time dobi wavernn`，訓練WaveRNN模型。`4-ciidien-20190516-16k-MeuLid-checkpoints/hagfa_raw.wavernn`係模型，`5-ciidien-20190516-16k-MeuLid-model_outputs/hagfa_raw.wavernn`做得聽訓練時結果。程式愛走51點鐘。
+6. `NGINGIEN=SinZhug time dobi wavernn`，訓練WaveRNN模型。`4-ciidien-20190516-16k-MeuLid-checkpoints/hagfa_raw.wavernn`係模型，`5-ciidien-20190516-16k-MeuLid-model_outputs/hagfa_raw.wavernn`做得聽訓練時結果。程式愛走51點鐘。
 ```
 4-ciidien-20190516-16k-MeuLid-checkpoints/
 ├── hagfa_lsa_smooth_attention.tacotron
@@ -184,7 +184,7 @@ ValueError: Range cannot be empty (low >= high) unless no samples are taken
     ├── 1000k_steps_2_target.wav
     └── ...
 ```
-7. `time dobi habsang`，合成語句。
+7. `NGINGIEN=SinZhug time dobi habsang`，合成語句。
 ```
 5-ciidien-20190516-16k-MeuLid-model_outputs/
 ├── hagfa_lsa_smooth_attention.tacotron
